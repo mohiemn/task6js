@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Q4</title>
+    <meta name="description" content="project" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+
+    <h1>Q4</h1>
+    <form id="userForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="Email">Email:</label>
+        <input type="text" id="Email" name="Email" required>
+        <label for="Mobile">Mobile:</label>
+        <input type="text" id="Mobile" name="Mobile" required>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="storedData"></p>
+
+    <script>
+        // Function to store form data in sessionStorage
+        function storeFormData() {
+
+            // Get form data
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('Email').value;
+            let mobile = document.getElementById('Mobile').value;
+                // Store data in sessionStorage
+            sessionStorage.setItem('name', name);
+            sessionStorage.setItem('Email' , email);
+            sessionStorage.setItem('Mobile',mobile);
+
+
+            // Display stored data
+            displayStoredData();
+        }
+
+        // Function to display stored data
+        function displayStoredData() {
+            let name = sessionStorage.getItem('name');
+            let email =sessionStorage.getItem('Email');
+            let mobile = sessionStorage.getItem('Mobile');
+
+            let storedData = `Name: ${ name }, Email: ${ email }, Mobile: ${ mobile }`;
+            document.getElementById('storedData').innerText = storedData;
+        }
+
+        // Add event listener to form
+        document.getElementById('userForm').addEventListener('submit', storeFormData);
+
+        // Display stored data on page load (if any)
+        document.addEventListener('DOMContentLoaded', displayStoredData);
+    </script>
+
+    
+</body>
+
+</html>
